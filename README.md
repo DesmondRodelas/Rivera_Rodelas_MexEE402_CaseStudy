@@ -66,7 +66,7 @@ Lastly, categorical variables such as Embarked were initially converted into num
 
 ## Note on AI tools
 
-In some parts of the case study, specifically in the coding part we used an AI tool like GeminiAI to assist us with analyzing code structure, summarizing dataset pipelines, checking preprocessing steps, and formatting reflections clearly based on the notebook outputs.
+In some parts of the case study, specifically in the coding part we used an AI tool like Gemini AI to assist us with analyzing code structure, summarizing dataset pipelines, checking preprocessing steps, and formatting reflections clearly based on the notebook outputs. 
 
 ## References
 
