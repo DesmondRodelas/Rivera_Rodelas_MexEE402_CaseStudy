@@ -8,7 +8,7 @@ Batangas State University, Alangilan Campus
 
 | Name | Student Number | Section |
 |---|---|---|
-| Rivera, Ralph | | Mexe-4103 |
+| Rivera, Ralph Christopher C. | 22-06648 | Mexe-4103 |
 | Rodelas, Desmond | 22-01230 | Mexe-4103 |
 
 ## Notebook links
@@ -18,39 +18,55 @@ Batangas State University, Alangilan Campus
 | Ch1_2_3 | [link]() | https://colab.research.google.com/drive/1t3TEiNXIex-QNjkZloTiIKsfjYvBY7-Z?usp=sharing |
 | Ch4 | [link]() | https://colab.research.google.com/drive/1couz4XJKSQLr-X1-RzPhvetkghkkLp-d?usp=sharing |
 | Ch5 | [link]() | https://colab.research.google.com/drive/17bmsb1-ECw5w6M6wwUuRjb5se272cjo2?usp=sharing|
-| Ch6 | [link]() | [link]() |
-| Ch7 | [link]() | [link]() |
-| Ch8 | [link]() | [link]() |
-| Ch9 | [link]() | [link]() |
+| Ch6 |  https://colab.research.google.com/drive/1iDh6p4fBVhIIbyh20GOidgWpHkIkYYlH?usp=sharing | [link]() |
+| Ch7 |  https://colab.research.google.com/drive/1aPI1P-aj537JwyzoVb80XNlNyqSEq1zo?usp=sharing | [link]() |
+| Ch8 |  https://colab.research.google.com/drive/190w0Ar96hQ2fP-j1ny48yFikYhEw4t84?usp=sharing | [link]() |
+| Ch9 |  https://colab.research.google.com/drive/16lSYkT5KT5QoipT-Mi15y78mpmrBuF4b?usp=sharing | [link]() |
 
 ## What we learned
 
 One short paragraph per chapter, Ch1_2_3 to Ch9. Say what the chapter taught
 you and what surprised you. Not what the library does, but what you understood. (TANGGALIN MO NA LANG KAPAG NAGLAGAY KA)
 
-Chap 1-3:
+### Chapter 1-3 : Introduction to Data Pre-processing
 
 This chapter taught us to prepare and organize the data first then determine if there are missing data and what option is the best to fix the problem. 
 
-Chap 4:
+### Chapter 4 : Unleashing the Power of Data Through Transformation and Feature Engineering
 
 This chapter taught us how to combine some feature into new features and with the help of One-hot Encoding and Ordinal Encoding we can determine if there is a pattern in the data.
 
-Chap 5:
+### Chapter 5 : Unfolding the Essentials of Data Scaling and Normalization
 
 This chapter taught us how scaling works. We can determine if the data we have is comparable even with a large gap between the numbers. 
 
+### Chapter 6 : Dealing with Outliers
 
+I understood that real-world datasets are rarely model-ready and require tailored handling of missing values rather than simple deletion. Using strategies such as median imputation for numerical features like Age and Fare and constant fills for categorical features reduces massive data loss while maintaining feature integrity. What surprised me was the volume of missing data, particularly in Cabin, and how dropping rows arbitrarily can severely bias a model when compared to imputing.
+
+### Chapter 7 : Feature Selection
+
+I learned how raw continuous and categorical attributes must be converted into numerical representations that machine learning algorithms can mathematically process. OneHotEncoder transforms different categorical labels such as Sex, Embarked, and Pclass, into binary indicator columns, while Standard Scaler standardizes numerical variables to prevent features with wider ranges from dominating training. The fact that categorical features, such as Pclass, frequently perform better when encoded categorically as opposed to being treated as straightforward numerical scales surprised me because it eliminates implicit distance assumptions.
+
+### Chapter 8 : Constructing a Preprocessing Pipeline
+
+I learned that non-linear relationships that a typical continuous model might overlook can be highlighted by classifying continuous variables into discrete bins like converting continuous Age values into Child, Adult, and Elderly categories. Additionally, dropping non-informative columns like Passenger Id, Name, and Ticket reduces noise and dimensional complexity. I was surprised by how much domain-specific feature engineering (like life-stage binning) can simplify data variance without sacrificing predictive clarity.
+
+### Chapter 9 : Real-World Application: Data Preprocessing
+
+I learned how to tie independent preprocessing steps like imputation, scaling, and encoding into a unified workflow using Column Transformer to prevent data leakage and streamline multi-step modeling. Evaluating the final transformed dataset verified that missing values across all features were completely eliminated (reduced to 0). What surprised me was how concise and reusable a well-constructed pipeline makes the data transformation process compared to manually applying separate transformers to individual DataFrames.
 
 ## Errors we found
 
-List any mistake you found in the original notebooks, and the correct version.
-There are real ones in there. Finding them earns points. (WALA AKO NAKITA SA PART KO)
+One of the main issues found in the original notebooks was how missing categorical data was handled. Numerical imputation methods, such as using the mean or median, were mistakenly applied to string-based columns. This resulted in execution errors and incorrect data types. To fix this, SimpleImputer was configured with strategy='constant' and fill_value='missing' specifically for categorical variables.
+
+Another important issue was data leakage during feature scaling. In the original version, tools like StandardScaler were fitted using the entire dataset before it was split into training and testing sets. This meant that information from the test or validation data could unintentionally influence the training process. The corrected version prevents this by fitting the scalers only on the training data through a ColumnTransformer pipeline.
+
+Lastly, categorical variables such as Embarked were initially converted into numerical values using label encoding. This created an unintended order between the categories, as if values like S, C, and Q had a mathematical relationship. To avoid this, OneHotEncoder(handle_unknown='ignore') was used instead. This converts each category into its own binary column without implying any ranking or order between them.
 
 ## Note on AI tools
 
-Say whether you used an AI tool, and what for. This is not a penalty.
-Hiding it is. (DI AKO GUMAMIT SA PART KO)
+In some parts of the case study, specifically in the coding part we used an AI tool like GeminiAI to assist us with analyzing code structure, summarizing dataset pipelines, checking preprocessing steps, and formatting reflections clearly based on the notebook outputs.
 
 ## References
 
